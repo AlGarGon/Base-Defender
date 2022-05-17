@@ -1,22 +1,26 @@
 #include <SFML/Graphics.hpp>
-#include<iostream>
+#include <random>
+#include <iostream>
 
 /*Parametres*/
 #define largeurWindow 1920
 #define hauteurWindow 1080
+//#define PosiTour sf::Vector2f(largeurWindow/2.f, 300.f)
 
 #define VectZero sf::Vector2f(0,0)
 #define Droite sf::Vector2f(50,0)
 #define Gauche sf::Vector2f(-50,0)
 
+int position = 0;
+
 int main()
 {
 	/* affichage écran*/
-	sf::RenderWindow window(sf::VideoMode(largeurWindow, hauteurWindow), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(largeurWindow,hauteurWindow ), "SFML works!");
 	//sf::View view(VectZero, sf::Vector2f(largeurWindow, hauteurWindow));
 	//sf::View Uiview(sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f), sf::Vector2f(largeurWindow, hauteurWindow));
 	//sf::View Inventaireview(sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f), sf::Vector2f(largeurWindow, hauteurWindow));
-
+	
 	// limitation FPS
 	window.setFramerateLimit(60);
 
@@ -30,7 +34,7 @@ int main()
 	sf::RectangleShape rectangleDroite(sf::Vector2f(50.f, 80.f));
 	rectangleDroite.setFillColor(sf::Color::Yellow);
 
-	/* ajout ligne sol*/
+	/*ajout ligne sol*/
 	sf::Vertex line[] =
 	{
 		sf::Vertex(sf::Vector2f(0.f, 800.f)),
@@ -48,6 +52,25 @@ int main()
 
 	sf::Vector2f deplacementGauche = Droite;
 	sf::Vector2f deplacementDroite = Gauche;
+
+	/*position = rand() % 2;
+	if (position == 1)
+	{
+		std::cout << "1";
+		sf::RectangleShape rectangleGauche(sf::Vector2f(50.f, 80.f));
+		rectangleGauche.setFillColor(sf::Color::Magenta);
+		rectangleGauche.setPosition(0.f, 720.f);
+		window.draw(rectangleGauche);
+	}
+
+	if (position == 0)
+	{
+		std::cout << "0";
+		sf::RectangleShape rectangleDroite(sf::Vector2f(50.f, 80.f));
+		rectangleDroite.setFillColor(sf::Color::Yellow);
+		rectangleDroite.setPosition(1900.f, 720.f);
+		window.draw(rectangleDroite);
+	}*/
 
 	while (window.isOpen())
 	{
@@ -70,7 +93,7 @@ int main()
 
 		if (rectangleGauche.getGlobalBounds().intersects(tour.getGlobalBounds()))
 		{
-			//std::cout << "Touché";
+			std::cout << "Touché";
 			deplacementGauche = VectZero;
 			rectangleGauche.setFillColor(sf::Color::Red);
 		}
@@ -84,6 +107,8 @@ int main()
 
 
 		//_____
+		
+
 		window.clear();
 		window.draw(line, 2, sf::Lines);
 		window.draw(rectangleGauche);
@@ -91,7 +116,18 @@ int main()
 		window.draw(rectangleDroite);
 		window.display();
 
-
+		
 	}
 	return 0;
 }
+
+
+
+
+
+/*
+position tour - position ennemi = ...
+x = ... 
+
+distance = tour.x - 
+*/
