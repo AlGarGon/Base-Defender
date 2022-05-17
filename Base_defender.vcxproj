@@ -164,6 +164,9 @@
     <ClInclude Include="projectile.h" />
     <ClInclude Include="Texture_path.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Ressources\tour.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
