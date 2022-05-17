@@ -15,7 +15,7 @@ int position = 0;
 
 int main()
 {
-	/* affichage écran*/
+	/* affichage ï¿½cran*/
 	sf::RenderWindow window(sf::VideoMode(largeurWindow,hauteurWindow ), "SFML works!");
 	//sf::View view(VectZero, sf::Vector2f(largeurWindow, hauteurWindow));
 	//sf::View Uiview(sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f), sf::Vector2f(largeurWindow, hauteurWindow));
@@ -25,14 +25,14 @@ int main()
 	window.setFramerateLimit(60);
 
 	/*Affichage forme*/
-	sf::RectangleShape rectangleGauche(sf::Vector2f(50.f, 80.f));
-	rectangleGauche.setFillColor(sf::Color::Magenta);
+	//sf::RectangleShape rectangleGauche(sf::Vector2f(50.f, 80.f));
+	//rectangleGauche.setFillColor(sf::Color::Magenta);
 
 	sf::RectangleShape tour(sf::Vector2f(100.f, 500.f));
 	tour.setFillColor(sf::Color::White);
 
-	sf::RectangleShape rectangleDroite(sf::Vector2f(50.f, 80.f));
-	rectangleDroite.setFillColor(sf::Color::Yellow);
+	//sf::RectangleShape rectangleDroite(sf::Vector2f(50.f, 80.f));
+	//rectangleDroite.setFillColor(sf::Color::Yellow);
 
 	/*ajout ligne sol*/
 	sf::Vertex line[] =
@@ -53,24 +53,18 @@ int main()
 	sf::Vector2f deplacementGauche = Droite;
 	sf::Vector2f deplacementDroite = Gauche;
 
-	/*position = rand() % 2;
+	position = rand() % 2;
 	if (position == 1)
 	{
+		entity *rectangleGauche =  new entity(sf::Color::Magenta,tour,sf::Vector2f(0.f, 720.f),sf::Vector2f(50.f, 80.f))
 		std::cout << "1";
-		sf::RectangleShape rectangleGauche(sf::Vector2f(50.f, 80.f));
-		rectangleGauche.setFillColor(sf::Color::Magenta);
-		rectangleGauche.setPosition(0.f, 720.f);
-		window.draw(rectangleGauche);
 	}
 
 	if (position == 0)
 	{
 		std::cout << "0";
-		sf::RectangleShape rectangleDroite(sf::Vector2f(50.f, 80.f));
-		rectangleDroite.setFillColor(sf::Color::Yellow);
-		rectangleDroite.setPosition(1900.f, 720.f);
-		window.draw(rectangleDroite);
-	}*/
+		entity *rectangleDroite =  new entity(sf::Color::Yellow,tour,sf::Vector2f(1900.f, 720.f),sf::Vector2f(50.f, 80.f)
+	}
 
 	while (window.isOpen())
 	{
@@ -81,29 +75,15 @@ int main()
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
-				// la touche escape est enfoncée : on quitte la page
+				// la touche escape est enfoncï¿½e : on quitte la page
 				window.close();
 			}
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 		//zone of love
-		rectangleGauche.move(deplacementGauche.x * t1.asSeconds(), deplacementGauche.y * t1.asSeconds());
-		rectangleDroite.move(deplacementDroite.x * t1.asSeconds(), deplacementDroite.y * t1.asSeconds());
-
-		if (rectangleGauche.getGlobalBounds().intersects(tour.getGlobalBounds()))
-		{
-			std::cout << "Touché";
-			deplacementGauche = VectZero;
-			rectangleGauche.setFillColor(sf::Color::Red);
-		}
-
-		if (rectangleDroite.getGlobalBounds().intersects(tour.getGlobalBounds()))
-		{
-			//std::cout << "Touché";
-			deplacementDroite = VectZero;
-			rectangleDroite.setFillColor(sf::Color::Blue);
-		}
+		//rectangleGauche.move(deplacementGauche.x * t1.asSeconds(), deplacementGauche.y * t1.asSeconds());
+		//rectangleDroite.move(deplacementDroite.x * t1.asSeconds(), deplacementDroite.y * t1.asSeconds());
 
 
 		//_____
@@ -111,9 +91,9 @@ int main()
 
 		window.clear();
 		window.draw(line, 2, sf::Lines);
-		window.draw(rectangleGauche);
+		window.draw(&rectangleGauche);
 		window.draw(tour);
-		window.draw(rectangleDroite);
+		window.draw(&rectangleDroite);
 		window.display();
 
 		
